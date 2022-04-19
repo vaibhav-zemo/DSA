@@ -13,13 +13,21 @@ int return_keypad(string *arr, int n, string *output)
     int rem = n % 10;
     int length = return_keypad(arr, n/10, output);
     int l = length;
-    for (int i = 0; i < arr[rem-1].size(); i++)
+
+    string *temp = new string[l];
+    for (int i = 0; i < l; i++)
     {
-        for (int j = 0; j < length; j++)
+        temp[i] = output[i];
+    }
+    
+    int k = 0;
+    for (int j=0;j<length;j++)
+    {
+        for (int i = 0; i < arr[rem-1].size(); i++)
         {
-            output[l + j] = output[j] + arr[rem-1][i];
+            output[k] = temp[j] + arr[rem-1][i];
+            k++;
         }
-        l *= 2;
     }
 
     return arr[rem].size() * length;
